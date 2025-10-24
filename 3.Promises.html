@@ -1,6 +1,42 @@
 <html>
-    <script>
-        /*1. Create a simple promise*/
+<script>
+    /*1. Create a simple promise*/
+    const myPromise = new Promise((resolve, reject) => {
+
+       
+        console.log("Preparing your food"); //synchronous
+
+        setTimeout(()=> { 
+        let ingrediantsAvailable = true;
+        if (ingrediantsAvailable == true) {
+            resolve("Your food is served - hot and fresh"); //asynchronous 
+        } else {
+            reject("your food gone twin");
+        }
+
+       }, 3000);
+        //successful scenario
+
+    }); //fat arrow function, 2 parameters - resolve and reject
+
+    myPromise
+        .then((x) => console.log("food ready gang:", x))
+        .catch((err) => console.log("ur food cooked:", err));
+    //fat arrow function, 2 parameters - resolve and reject
+
+
+        async function orderFood(){
+            try {
+                //wait for my promise to be resolved;
+                let messagefromKitchen = await myPromise;
+                console.log("food ready from async:", messagefromKitchen);
+                //variable time to complete - asynchronous function
+            } catch (error) {
+                console.log("error from async",error);
+            }
+        }
+
+        orderFood();
 
         /*2. Use the promise*/
 

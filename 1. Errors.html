@@ -1,23 +1,47 @@
 <html>
 <script>
   function displayUser() {
-    let user = {
-      name: "Dan",
-      address: "Canada"
-    };
-    user = null;
-    console.log(user.name);
+    try {
+      let user = {
+        name: "Dan",
+        address: "Canada"
+      };
+      user = null; //simulated
+      console.log(user.name);
+    } catch (error) {
+      console.log("Oops, an error has occured:", error.name);
+    }
     console.log("✅ Program continues...");
   }
 
-
+  //Divide by 0 error
   function divide(a, b) {
-    let reminder = a / b;
-    console.log("Result:", a / b);
+    try {
+      //if the denominator is 0 throw an error
+      if (b == 0) {
+        throw new Error("cannot divide by 0")
+      }
+      let reminder = a / b;
+      console.log("Result:", a / b);
+    } catch (err) {
+      console.log("oops an error occurred", err.message);
+    }
   }
 
   function registerUser(username) {
-    console.log(`✅ User '${username}' registered successfully!`);
+    // if the username is "" throw an error
+    //step 1 write try catch
+    //step 2 check if username is == "" and throw an error
+    //step 3 username.trim()=="" , remove unwanted spaces
+    try {
+      if (username.trim() == "") {
+        throw new Error("username is empty")
+      }
+      //if the user name is empty throw an error
+      console.log(`✅ User '${username}' registered successfully!`);
+    } catch (error) {
+      console.log("oops an error occurred", error.message);
+    }
   }
 
   registerUser("Alex");
